@@ -5,7 +5,7 @@ package aufgabe5a;
  * Klasse Fachnote.
  * @version 1.0
  */
-public class Fachnote {
+public final class Fachnote {
     private final String fach;
     private final Note note;
 

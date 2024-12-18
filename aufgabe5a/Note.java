@@ -5,7 +5,7 @@ package aufgabe5a;
  * @version 1.0
  */
 public final class Note {
-    private  int note = 0;
+    private final int note;
 
     /**
      * Konstruktor.

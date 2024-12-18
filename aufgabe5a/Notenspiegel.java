@@ -63,17 +63,16 @@ public final class Notenspiegel {
 
         FachnotenListe.Iterator superIterator = liste.new Iterator();
         System.out.println("NOTENSPIEGEL:");
-        final int vier = 4;
 
         while (superIterator.hasNext()) {
             Fachnote fachnote = superIterator.next();
             String fach = fachnote.fach();
             Note note = fachnote.note();
-            while (fach.length() < laengstesFach + vier) {
+            while (fach.length() < laengstesFach) {
                 fach = fach + " ";
             }
-            System.out.print(fach);
-            System.out.print(note + "    ");
+            System.out.print(fach + "\t");
+            System.out.print(note + "\t");
             if (note.istBestanden()) {
                 if (note.equals(Note.BESTE)) {
                     System.out.println("mit Bestnote bestanden");
@@ -83,7 +82,7 @@ public final class Notenspiegel {
             } else {
                 System.out.println("nicht bestanden");
             }
-            System.out.println("Das ist ein Test");
+            //System.out.println("Das ist ein Test");
         }
     } // main
 }

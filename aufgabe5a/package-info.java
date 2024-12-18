@@ -1,4 +1,3 @@
-package aufgabe5a;
 /**
 
 Paket mit der f&uuml;nften &Uuml;bungsaufgabe zu Programmiertechnik 1
@@ -43,3 +42,4 @@ Anleitungen zu den &Uuml;bungen</a>
 @version 5.1.2024
 
 */
+package aufgabe5a;

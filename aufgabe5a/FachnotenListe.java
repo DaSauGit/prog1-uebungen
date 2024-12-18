@@ -85,7 +85,6 @@ public final class FachnotenListe {
      * @return Scanner
      */
     public Scanner iterator() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented"
                                             + " method 'Iterator'");
     }
