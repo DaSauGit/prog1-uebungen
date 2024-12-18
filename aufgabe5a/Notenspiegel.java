@@ -83,6 +83,7 @@ public final class Notenspiegel {
             } else {
                 System.out.println("nicht bestanden");
             }
+            System.out.println("Das ist ein Test");
         }
     } // main
 }
