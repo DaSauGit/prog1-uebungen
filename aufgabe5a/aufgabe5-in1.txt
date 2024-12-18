@@ -1,0 +1,4 @@
+Mathematik1 30
+Programmiertechnik 2,0
+Softwaremodellierung 2,3
+Digitaltechnik 1,0

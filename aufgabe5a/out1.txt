@@ -1,0 +1,5 @@
+NOTENSPIEGEL:
+Digitaltechnik          1,0    mit Bestnote bestanden
+Softwaremodellierung    2,3    bestanden
+Programmiertechnik      2,0    bestanden
+Mathematik1             3,0    bestanden
