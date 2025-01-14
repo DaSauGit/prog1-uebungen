@@ -28,7 +28,7 @@ public final class HtmlNotenspiegel {
      * <code>BE</code> f&uuml;r bestanden oder
      * <code>NB</code> f&uuml;r nicht bestanden lauten.
      * Bei benoteten F&auml;chern muss die Note laut
-     * {@link aufgabe5.Note#valueOf(java.lang.String)} erlaubt sein.
+     * {@link aufgabe5a.Note#valueOf(java.lang.String)} erlaubt sein.
      * Der Dateinname des Notenspiegels wird aus den Argumenten gebildet.</p>
      * @param args Vorname(n) Nachname (mindestens zwei Argumente)
      * @throws IOException bei Einleseproblemen

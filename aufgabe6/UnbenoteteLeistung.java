@@ -11,12 +11,12 @@ public class UnbenoteteLeistung extends aufgabe6.Leistung{
 
     @Override
     public boolean istBestanden() {
-        throw new UnsupportedOperationException("Unimplemented method 'istBestanden'");
+    return bestanden;
     }
 
     @Override
     public boolean istBenotet() {
-        throw new UnsupportedOperationException("Unimplemented method 'istBenotet'");
+    return false;
     }
 
 }

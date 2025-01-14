@@ -4,9 +4,10 @@ import aufgabe5a.Note;
 public class BenoteteLeistung extends aufgabe6.Leistung{
     private final Note note;
 
-    public BenoteteLeistung(String f, String n) {
+    public BenoteteLeistung(String f, String note) {
         super(f);
-        this.note = Note.valueOf(n);
+        this.note = Note.valueOf(note);
+
     }
 
     @Override
@@ -16,6 +17,6 @@ public class BenoteteLeistung extends aufgabe6.Leistung{
 
     @Override
     public boolean istBenotet() {
-        throw new UnsupportedOperationException("Unimplemented method 'istBenotet'");
+        return true;
     }
 }
