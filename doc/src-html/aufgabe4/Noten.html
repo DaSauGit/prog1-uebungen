@@ -19,117 +19,183 @@
 <span class="source-line-no">006</span><span id="line-6"> */</span>
 <span class="source-line-no">007</span><span id="line-7">public final class Noten {</span>
 <span class="source-line-no">008</span><span id="line-8">    /**</span>
-<span class="source-line-no">009</span><span id="line-9">     * Beste Note.</span>
-<span class="source-line-no">010</span><span id="line-10">     */</span>
-<span class="source-line-no">011</span><span id="line-11">    public static final double BESTE = 1.0;</span>
-<span class="source-line-no">012</span><span id="line-12">    /**</span>
-<span class="source-line-no">013</span><span id="line-13">     * Schlechteste Note.</span>
-<span class="source-line-no">014</span><span id="line-14">     */</span>
-<span class="source-line-no">015</span><span id="line-15">    public static final double SCHLECHTESTE = 5.0;</span>
-<span class="source-line-no">016</span><span id="line-16"></span>
+<span class="source-line-no">009</span><span id="line-9">     * Represents the highest possible grade in</span>
+<span class="source-line-no">010</span><span id="line-10">     * the grading system.</span>
+<span class="source-line-no">011</span><span id="line-11">     * This constant is used to compare grades</span>
+<span class="source-line-no">012</span><span id="line-12">     * and determine the best grade.</span>
+<span class="source-line-no">013</span><span id="line-13">     * It is part of the grading logic</span>
+<span class="source-line-no">014</span><span id="line-14">     * encapsulated in the Noten class.</span>
+<span class="source-line-no">015</span><span id="line-15">     */</span>
+<span class="source-line-no">016</span><span id="line-16">    public static final double BESTE = 1.0;</span>
 <span class="source-line-no">017</span><span id="line-17">    /**</span>
-<span class="source-line-no">018</span><span id="line-18">     * Überprüft, ob die Note zulässig ist.</span>
-<span class="source-line-no">019</span><span id="line-19">     * @param note</span>
-<span class="source-line-no">020</span><span id="line-20">     * @return returned true, wenn die Note zulässig ist, sonst false</span>
-<span class="source-line-no">021</span><span id="line-21">     */</span>
-<span class="source-line-no">022</span><span id="line-22">    public static boolean istZulaessig(String note) {</span>
-<span class="source-line-no">023</span><span id="line-23">        if (note.length() != 3) {</span>
-<span class="source-line-no">024</span><span id="line-24">            return false;</span>
-<span class="source-line-no">025</span><span id="line-25">        }</span>
-<span class="source-line-no">026</span><span id="line-26">        char c1 = note.charAt(0);</span>
-<span class="source-line-no">027</span><span id="line-27">        char c2 = note.charAt(1);</span>
-<span class="source-line-no">028</span><span id="line-28">        char c3 = note.charAt(2);</span>
-<span class="source-line-no">029</span><span id="line-29">        if (c2 != '.' &amp;&amp; c2 != ',') {</span>
-<span class="source-line-no">030</span><span id="line-30">            return false;</span>
-<span class="source-line-no">031</span><span id="line-31">        } else if (!Character.isDigit(c1) &amp;&amp; !Character.isDigit(c3)) {</span>
-<span class="source-line-no">032</span><span id="line-32">            return false;</span>
-<span class="source-line-no">033</span><span id="line-33">        } else if ((c1 == '4' || c1 == '5') &amp;&amp; c3 != '0') {</span>
-<span class="source-line-no">034</span><span id="line-34">            return false;</span>
-<span class="source-line-no">035</span><span id="line-35">        } else if (c1 == '1' || c1 == '2' || c1 == '3'</span>
-<span class="source-line-no">036</span><span id="line-36">                    || c1 == '4' || c1 == '5') {</span>
-<span class="source-line-no">037</span><span id="line-37">            if (c3 == '0') {</span>
-<span class="source-line-no">038</span><span id="line-38">                return true;</span>
-<span class="source-line-no">039</span><span id="line-39">            } else if ((c3 == '3' || c3 == '7') &amp;&amp; c1 != '4' &amp;&amp; c1 != '5') {</span>
-<span class="source-line-no">040</span><span id="line-40">                return true;</span>
-<span class="source-line-no">041</span><span id="line-41">            } else {</span>
-<span class="source-line-no">042</span><span id="line-42">                return false;</span>
-<span class="source-line-no">043</span><span id="line-43">            }</span>
-<span class="source-line-no">044</span><span id="line-44">        }</span>
-<span class="source-line-no">045</span><span id="line-45">        return false;</span>
-<span class="source-line-no">046</span><span id="line-46">    }</span>
-<span class="source-line-no">047</span><span id="line-47"></span>
-<span class="source-line-no">048</span><span id="line-48">    /**</span>
-<span class="source-line-no">049</span><span id="line-49">     *Ändert die note von String in Double.</span>
-<span class="source-line-no">050</span><span id="line-50">     * @param note</span>
-<span class="source-line-no">051</span><span id="line-51">     * @return Die Note als Double</span>
-<span class="source-line-no">052</span><span id="line-52">     */</span>
-<span class="source-line-no">053</span><span id="line-53">    public static double toDouble(String note) {</span>
-<span class="source-line-no">054</span><span id="line-54">        if (istZulaessig(note)) {</span>
-<span class="source-line-no">055</span><span id="line-55">            String notePunkt = note.charAt(0) + "." + note.charAt(2);</span>
-<span class="source-line-no">056</span><span id="line-56">            double noteDouble = Double.parseDouble(notePunkt);</span>
-<span class="source-line-no">057</span><span id="line-57">            return noteDouble;</span>
-<span class="source-line-no">058</span><span id="line-58">        } else {</span>
-<span class="source-line-no">059</span><span id="line-59">            throw new IllegalArgumentException(note</span>
-<span class="source-line-no">060</span><span id="line-60">                                            + " Note ist nicht zulässig.");</span>
-<span class="source-line-no">061</span><span id="line-61">        }</span>
-<span class="source-line-no">062</span><span id="line-62">    }</span>
-<span class="source-line-no">063</span><span id="line-63"></span>
-<span class="source-line-no">064</span><span id="line-64">    /**</span>
-<span class="source-line-no">065</span><span id="line-65">     * Ändert die note von Double in String.</span>
-<span class="source-line-no">066</span><span id="line-66">     * @param note</span>
-<span class="source-line-no">067</span><span id="line-67">     * @return Die Note als String</span>
-<span class="source-line-no">068</span><span id="line-68">     */</span>
-<span class="source-line-no">069</span><span id="line-69">    public static String toString(double note) {</span>
-<span class="source-line-no">070</span><span id="line-70">        if (BESTE &lt;= note &amp;&amp; note &lt;= SCHLECHTESTE) {</span>
-<span class="source-line-no">071</span><span id="line-71">            String noteString = Double.toString(note);</span>
-<span class="source-line-no">072</span><span id="line-72">            return noteString;</span>
-<span class="source-line-no">073</span><span id="line-73">        } else {</span>
-<span class="source-line-no">074</span><span id="line-74">            throw new IllegalArgumentException(note</span>
-<span class="source-line-no">075</span><span id="line-75">                                            + " Note ist nicht zulässig.");</span>
-<span class="source-line-no">076</span><span id="line-76">        }</span>
-<span class="source-line-no">077</span><span id="line-77">    }</span>
-<span class="source-line-no">078</span><span id="line-78"></span>
-<span class="source-line-no">079</span><span id="line-79">    /**</span>
-<span class="source-line-no">080</span><span id="line-80">     * Überprüft, ob die Note als bestanden gilt.</span>
-<span class="source-line-no">081</span><span id="line-81">     * @param note</span>
-<span class="source-line-no">082</span><span id="line-82">     * @return true wenn die Note als bestanden gilt, sonst false</span>
-<span class="source-line-no">083</span><span id="line-83">     */</span>
-<span class="source-line-no">084</span><span id="line-84">    public static boolean istBestanden(double note) {</span>
-<span class="source-line-no">085</span><span id="line-85">        if (note &lt;= 4) {</span>
-<span class="source-line-no">086</span><span id="line-86">            return true;</span>
-<span class="source-line-no">087</span><span id="line-87">        } else {</span>
-<span class="source-line-no">088</span><span id="line-88">            return false;</span>
-<span class="source-line-no">089</span><span id="line-89">        }</span>
-<span class="source-line-no">090</span><span id="line-90">    }</span>
-<span class="source-line-no">091</span><span id="line-91"></span>
-<span class="source-line-no">092</span><span id="line-92">    /**</span>
-<span class="source-line-no">093</span><span id="line-93">     * Überprüft, welche Note besser ist.</span>
-<span class="source-line-no">094</span><span id="line-94">     * @param noteEins</span>
-<span class="source-line-no">095</span><span id="line-95">     * @param noteZwei</span>
-<span class="source-line-no">096</span><span id="line-96">     * @return die bessere Note wird returned</span>
-<span class="source-line-no">097</span><span id="line-97">     */</span>
-<span class="source-line-no">098</span><span id="line-98">    public static double bessere(double noteEins, double noteZwei) {</span>
-<span class="source-line-no">099</span><span id="line-99">        if (noteEins &lt; noteZwei) {</span>
-<span class="source-line-no">100</span><span id="line-100">            return noteEins;</span>
-<span class="source-line-no">101</span><span id="line-101">        } else {</span>
-<span class="source-line-no">102</span><span id="line-102">            return noteZwei;</span>
-<span class="source-line-no">103</span><span id="line-103">        }</span>
-<span class="source-line-no">104</span><span id="line-104">    }</span>
-<span class="source-line-no">105</span><span id="line-105"></span>
-<span class="source-line-no">106</span><span id="line-106">    /**</span>
-<span class="source-line-no">107</span><span id="line-107">     * Überprüft, welche Note schlechter ist.</span>
-<span class="source-line-no">108</span><span id="line-108">     * @param noteEins</span>
-<span class="source-line-no">109</span><span id="line-109">     * @param noteZwei</span>
-<span class="source-line-no">110</span><span id="line-110">     * @return die schlechtere Note wird returned.</span>
-<span class="source-line-no">111</span><span id="line-111">     */</span>
-<span class="source-line-no">112</span><span id="line-112">    public static double schlechtere(double noteEins, double noteZwei) {</span>
-<span class="source-line-no">113</span><span id="line-113">        if (noteEins &gt; noteZwei) {</span>
-<span class="source-line-no">114</span><span id="line-114">            return noteEins;</span>
-<span class="source-line-no">115</span><span id="line-115">        } else {</span>
-<span class="source-line-no">116</span><span id="line-116">            return noteZwei;</span>
-<span class="source-line-no">117</span><span id="line-117">        }</span>
-<span class="source-line-no">118</span><span id="line-118">    }</span>
-<span class="source-line-no">119</span><span id="line-119">}</span>
+<span class="source-line-no">018</span><span id="line-18">     * Repräsentiert die schlechteste mögliche</span>
+<span class="source-line-no">019</span><span id="line-19">     * Note im Notensystem.</span>
+<span class="source-line-no">020</span><span id="line-20">     * Die Note wird als Konstante mit einem</span>
+<span class="source-line-no">021</span><span id="line-21">     * festen Wert definiert.</span>
+<span class="source-line-no">022</span><span id="line-22">     * Diese Konstante wird verwendet, um</span>
+<span class="source-line-no">023</span><span id="line-23">     * Bewertungen und Vergleiche</span>
+<span class="source-line-no">024</span><span id="line-24">     * zwischen Noten durchzuführen oder um</span>
+<span class="source-line-no">025</span><span id="line-25">     * Standardwerte zu initialisieren.</span>
+<span class="source-line-no">026</span><span id="line-26">     */</span>
+<span class="source-line-no">027</span><span id="line-27">    public static final double SCHLECHTESTE = 5.0;</span>
+<span class="source-line-no">028</span><span id="line-28"></span>
+<span class="source-line-no">029</span><span id="line-29">    /**</span>
+<span class="source-line-no">030</span><span id="line-30">     * Überprüft, ob eine angegebenen Note</span>
+<span class="source-line-no">031</span><span id="line-31">     * als gültig angesehen wird.</span>
+<span class="source-line-no">032</span><span id="line-32">     *</span>
+<span class="source-line-no">033</span><span id="line-33">     * @param note Die Note, die geprüft</span>
+<span class="source-line-no">034</span><span id="line-34">     *             werden soll, im Format "X.Y"</span>
+<span class="source-line-no">035</span><span id="line-35">     *             oder "X,Y",</span>
+<span class="source-line-no">036</span><span id="line-36">     *             wobei X und Y Ziffern sind</span>
+<span class="source-line-no">037</span><span id="line-37">     *             und bestimmten Bedingungen</span>
+<span class="source-line-no">038</span><span id="line-38">     *             für eine</span>
+<span class="source-line-no">039</span><span id="line-39">     *             gültige Note entsprechen.</span>
+<span class="source-line-no">040</span><span id="line-40">     * @return true, wenn die Note gültig ist;</span>
+<span class="source-line-no">041</span><span id="line-41">     * false, wenn die Note ungültig ist.</span>
+<span class="source-line-no">042</span><span id="line-42">     */</span>
+<span class="source-line-no">043</span><span id="line-43">    public static boolean istZulaessig(String note) {</span>
+<span class="source-line-no">044</span><span id="line-44">        if (note.length() != 3) {</span>
+<span class="source-line-no">045</span><span id="line-45">            return false;</span>
+<span class="source-line-no">046</span><span id="line-46">        }</span>
+<span class="source-line-no">047</span><span id="line-47">        char c1 = note.charAt(0);</span>
+<span class="source-line-no">048</span><span id="line-48">        char c2 = note.charAt(1);</span>
+<span class="source-line-no">049</span><span id="line-49">        char c3 = note.charAt(2);</span>
+<span class="source-line-no">050</span><span id="line-50">        if (c2 != '.' &amp;&amp; c2 != ',') {</span>
+<span class="source-line-no">051</span><span id="line-51">            return false;</span>
+<span class="source-line-no">052</span><span id="line-52">        } else if (!Character.isDigit(c1) &amp;&amp; !Character.isDigit(c3)) {</span>
+<span class="source-line-no">053</span><span id="line-53">            return false;</span>
+<span class="source-line-no">054</span><span id="line-54">        } else if ((c1 == '4' || c1 == '5') &amp;&amp; c3 != '0') {</span>
+<span class="source-line-no">055</span><span id="line-55">            return false;</span>
+<span class="source-line-no">056</span><span id="line-56">        } else if (c1 == '1' || c1 == '2' || c1 == '3'</span>
+<span class="source-line-no">057</span><span id="line-57">                    || c1 == '4' || c1 == '5') {</span>
+<span class="source-line-no">058</span><span id="line-58">            if (c3 == '0') {</span>
+<span class="source-line-no">059</span><span id="line-59">                return true;</span>
+<span class="source-line-no">060</span><span id="line-60">            } else if ((c3 == '3' || c3 == '7') &amp;&amp; c1 != '4' &amp;&amp; c1 != '5') {</span>
+<span class="source-line-no">061</span><span id="line-61">                return true;</span>
+<span class="source-line-no">062</span><span id="line-62">            } else {</span>
+<span class="source-line-no">063</span><span id="line-63">                return false;</span>
+<span class="source-line-no">064</span><span id="line-64">            }</span>
+<span class="source-line-no">065</span><span id="line-65">        }</span>
+<span class="source-line-no">066</span><span id="line-66">        return false;</span>
+<span class="source-line-no">067</span><span id="line-67">    }</span>
+<span class="source-line-no">068</span><span id="line-68"></span>
+<span class="source-line-no">069</span><span id="line-69">    /**</span>
+<span class="source-line-no">070</span><span id="line-70">     * Converts a valid grade represented as</span>
+<span class="source-line-no">071</span><span id="line-71">     * a string in the format "X.Y" or "X,Y"</span>
+<span class="source-line-no">072</span><span id="line-72">     * into a double value. The method checks</span>
+<span class="source-line-no">073</span><span id="line-73">     * if the input string represents a valid</span>
+<span class="source-line-no">074</span><span id="line-74">     * grade format and throws an exception</span>
+<span class="source-line-no">075</span><span id="line-75">     * if not.</span>
+<span class="source-line-no">076</span><span id="line-76">     *</span>
+<span class="source-line-no">077</span><span id="line-77">     * @param note the grade as a string, which</span>
+<span class="source-line-no">078</span><span id="line-78">     *             should be in the format "X.Y"</span>
+<span class="source-line-no">079</span><span id="line-79">     *             or "X,Y", where X and Y are</span>
+<span class="source-line-no">080</span><span id="line-80">     *             digits adhering to the rules</span>
+<span class="source-line-no">081</span><span id="line-81">     *             for valid grades.</span>
+<span class="source-line-no">082</span><span id="line-82">     * @return the numeric representation of</span>
+<span class="source-line-no">083</span><span id="line-83">     * the grade as a double.</span>
+<span class="source-line-no">084</span><span id="line-84">     * @throws IllegalArgumentException if the</span>
+<span class="source-line-no">085</span><span id="line-85">     * input grade is not valid.</span>
+<span class="source-line-no">086</span><span id="line-86">     */</span>
+<span class="source-line-no">087</span><span id="line-87">    public static double toDouble(String note) {</span>
+<span class="source-line-no">088</span><span id="line-88">        if (istZulaessig(note)) {</span>
+<span class="source-line-no">089</span><span id="line-89">            String notePunkt = note.charAt(0) + "." + note.charAt(2);</span>
+<span class="source-line-no">090</span><span id="line-90">            double noteDouble = Double.parseDouble(notePunkt);</span>
+<span class="source-line-no">091</span><span id="line-91">            return noteDouble;</span>
+<span class="source-line-no">092</span><span id="line-92">        } else {</span>
+<span class="source-line-no">093</span><span id="line-93">            throw new IllegalArgumentException(note</span>
+<span class="source-line-no">094</span><span id="line-94">                                            + " Note ist nicht zulässig.");</span>
+<span class="source-line-no">095</span><span id="line-95">        }</span>
+<span class="source-line-no">096</span><span id="line-96">    }</span>
+<span class="source-line-no">097</span><span id="line-97"></span>
+<span class="source-line-no">098</span><span id="line-98">    /**</span>
+<span class="source-line-no">099</span><span id="line-99">     * Converts a numeric grade (as a double value)</span>
+<span class="source-line-no">100</span><span id="line-100">     * to its string representation</span>
+<span class="source-line-no">101</span><span id="line-101">     * if the grade is within the valid grade range</span>
+<span class="source-line-no">102</span><span id="line-102">     * defined by the constants</span>
+<span class="source-line-no">103</span><span id="line-103">     * BESTE and SCHLECHTESTE. If the grade is not</span>
+<span class="source-line-no">104</span><span id="line-104">     * valid, an exception is thrown.</span>
+<span class="source-line-no">105</span><span id="line-105">     *</span>
+<span class="source-line-no">106</span><span id="line-106">     * @param note the numeric grade to be converted</span>
+<span class="source-line-no">107</span><span id="line-107">     *             to a string representation.</span>
+<span class="source-line-no">108</span><span id="line-108">     * @return the string representation of the</span>
+<span class="source-line-no">109</span><span id="line-109">     * specified numeric grade.</span>
+<span class="source-line-no">110</span><span id="line-110">     * @throws IllegalArgumentException if the grade</span>
+<span class="source-line-no">111</span><span id="line-111">     * is not within the valid</span>
+<span class="source-line-no">112</span><span id="line-112">     *range of grades.</span>
+<span class="source-line-no">113</span><span id="line-113">     */</span>
+<span class="source-line-no">114</span><span id="line-114">    public static String toString(double note) {</span>
+<span class="source-line-no">115</span><span id="line-115">        if (BESTE &lt;= note &amp;&amp; note &lt;= SCHLECHTESTE) {</span>
+<span class="source-line-no">116</span><span id="line-116">            String noteString = Double.toString(note);</span>
+<span class="source-line-no">117</span><span id="line-117">            return noteString;</span>
+<span class="source-line-no">118</span><span id="line-118">        } else {</span>
+<span class="source-line-no">119</span><span id="line-119">            throw new IllegalArgumentException(note</span>
+<span class="source-line-no">120</span><span id="line-120">                                            + " Note ist nicht zulässig.");</span>
+<span class="source-line-no">121</span><span id="line-121">        }</span>
+<span class="source-line-no">122</span><span id="line-122">    }</span>
+<span class="source-line-no">123</span><span id="line-123"></span>
+<span class="source-line-no">124</span><span id="line-124">    /**</span>
+<span class="source-line-no">125</span><span id="line-125">     * Überprüft, ob eine Note als</span>
+<span class="source-line-no">126</span><span id="line-126">     * bestanden betrachtet wird.</span>
+<span class="source-line-no">127</span><span id="line-127">     * Eine Note wird als bestanden</span>
+<span class="source-line-no">128</span><span id="line-128">     * angesehen, wenn sie kleiner oder</span>
+<span class="source-line-no">129</span><span id="line-129">     * gleich 4.0 ist.</span>
+<span class="source-line-no">130</span><span id="line-130">     *</span>
+<span class="source-line-no">131</span><span id="line-131">     * @param note Die Note, die geprüft</span>
+<span class="source-line-no">132</span><span id="line-132">     *             werden soll, im Format</span>
+<span class="source-line-no">133</span><span id="line-133">     *             einer Dezimalzahl</span>
+<span class="source-line-no">134</span><span id="line-134">     *             (z. B. 1.0, 2.3, 4.0).</span>
+<span class="source-line-no">135</span><span id="line-135">     * @return true, wenn die Note bestanden</span>
+<span class="source-line-no">136</span><span id="line-136">     * ist (note &lt;= 4.0);</span>
+<span class="source-line-no">137</span><span id="line-137">     *         false, wenn die Note nicht</span>
+<span class="source-line-no">138</span><span id="line-138">     *         bestanden ist.</span>
+<span class="source-line-no">139</span><span id="line-139">     */</span>
+<span class="source-line-no">140</span><span id="line-140">    public static boolean istBestanden(double note) {</span>
+<span class="source-line-no">141</span><span id="line-141">        if (note &lt;= 4) {</span>
+<span class="source-line-no">142</span><span id="line-142">            return true;</span>
+<span class="source-line-no">143</span><span id="line-143">        } else {</span>
+<span class="source-line-no">144</span><span id="line-144">            return false;</span>
+<span class="source-line-no">145</span><span id="line-145">        }</span>
+<span class="source-line-no">146</span><span id="line-146">    }</span>
+<span class="source-line-no">147</span><span id="line-147"></span>
+<span class="source-line-no">148</span><span id="line-148">    /**</span>
+<span class="source-line-no">149</span><span id="line-149">     * Determines the better (smaller)</span>
+<span class="source-line-no">150</span><span id="line-150">     * of two grades.</span>
+<span class="source-line-no">151</span><span id="line-151">     * A grade is considered better if its</span>
+<span class="source-line-no">152</span><span id="line-152">     * value is numerically smaller.</span>
+<span class="source-line-no">153</span><span id="line-153">     *</span>
+<span class="source-line-no">154</span><span id="line-154">     * @param noteEins the first grade to compare</span>
+<span class="source-line-no">155</span><span id="line-155">     * @param noteZwei the second grade to compare</span>
+<span class="source-line-no">156</span><span id="line-156">     * @return the smaller of the two grades</span>
+<span class="source-line-no">157</span><span id="line-157">     */</span>
+<span class="source-line-no">158</span><span id="line-158">    public static double bessere(double noteEins, double noteZwei) {</span>
+<span class="source-line-no">159</span><span id="line-159">        if (noteEins &lt; noteZwei) {</span>
+<span class="source-line-no">160</span><span id="line-160">            return noteEins;</span>
+<span class="source-line-no">161</span><span id="line-161">        } else {</span>
+<span class="source-line-no">162</span><span id="line-162">            return noteZwei;</span>
+<span class="source-line-no">163</span><span id="line-163">        }</span>
+<span class="source-line-no">164</span><span id="line-164">    }</span>
+<span class="source-line-no">165</span><span id="line-165"></span>
+<span class="source-line-no">166</span><span id="line-166">    /**</span>
+<span class="source-line-no">167</span><span id="line-167">     * Determines the worse (larger)</span>
+<span class="source-line-no">168</span><span id="line-168">     * of two grades.</span>
+<span class="source-line-no">169</span><span id="line-169">     * A grade is considered worse if</span>
+<span class="source-line-no">170</span><span id="line-170">     * its value is numerically larger.</span>
+<span class="source-line-no">171</span><span id="line-171">     *</span>
+<span class="source-line-no">172</span><span id="line-172">     * @param noteEins the first grade</span>
+<span class="source-line-no">173</span><span id="line-173">     *                 to compare</span>
+<span class="source-line-no">174</span><span id="line-174">     * @param noteZwei the second grade</span>
+<span class="source-line-no">175</span><span id="line-175">     *                 to compare</span>
+<span class="source-line-no">176</span><span id="line-176">     * @return the larger of the two grades</span>
+<span class="source-line-no">177</span><span id="line-177">     */</span>
+<span class="source-line-no">178</span><span id="line-178">    public static double schlechtere(double noteEins, double noteZwei) {</span>
+<span class="source-line-no">179</span><span id="line-179">        if (noteEins &gt; noteZwei) {</span>
+<span class="source-line-no">180</span><span id="line-180">            return noteEins;</span>
+<span class="source-line-no">181</span><span id="line-181">        } else {</span>
+<span class="source-line-no">182</span><span id="line-182">            return noteZwei;</span>
+<span class="source-line-no">183</span><span id="line-183">        }</span>
+<span class="source-line-no">184</span><span id="line-184">    }</span>
+<span class="source-line-no">185</span><span id="line-185">}</span>
 
 
 

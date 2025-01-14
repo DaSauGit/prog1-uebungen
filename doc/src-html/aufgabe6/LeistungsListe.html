@@ -11,18 +11,95 @@
 <body class="source-page">
 <main role="main">
 <div class="source-container">
-<pre><span class="source-line-no">001</span><span id="line-1">// LeistungsListe.java</span>
+<pre><span class="source-line-no">001</span><span id="line-1">// IntList.java</span>
 <span class="source-line-no">002</span><span id="line-2">package aufgabe6;</span>
 <span class="source-line-no">003</span><span id="line-3"></span>
-<span class="source-line-no">004</span><span id="line-4">/**</span>
-<span class="source-line-no">005</span><span id="line-5"> * LeistungsListe kapselt eine Liste von Leistungen.</span>
-<span class="source-line-no">006</span><span id="line-6"> * @author TODO: Name eintragen</span>
-<span class="source-line-no">007</span><span id="line-7"> * @version TODO: Datume eintragen</span>
-<span class="source-line-no">008</span><span id="line-8"> */</span>
-<span class="source-line-no">009</span><span id="line-9">public final class LeistungsListe implements Iterable&lt;Leistung&gt; {</span>
-<span class="source-line-no">010</span><span id="line-10">    // TODO: Listenimplementierung</span>
-<span class="source-line-no">011</span><span id="line-11">}</span>
-<span class="source-line-no">012</span><span id="line-12"></span>
+<span class="source-line-no">004</span><span id="line-4">import java.util.Iterator;</span>
+<span class="source-line-no">005</span><span id="line-5">import java.util.NoSuchElementException;</span>
+<span class="source-line-no">006</span><span id="line-6"></span>
+<span class="source-line-no">007</span><span id="line-7">/**</span>
+<span class="source-line-no">008</span><span id="line-8"> * IntList verwaltet ganze Zahlen als Liste.</span>
+<span class="source-line-no">009</span><span id="line-9"> * Beispielprogramm zur Programmiertechnik 1, Teil 5.</span>
+<span class="source-line-no">010</span><span id="line-10"> *</span>
+<span class="source-line-no">011</span><span id="line-11"> * @author H.Drachenfels</span>
+<span class="source-line-no">012</span><span id="line-12"> * @version 17.7.2024</span>
+<span class="source-line-no">013</span><span id="line-13"> */</span>
+<span class="source-line-no">014</span><span id="line-14">public final class LeistungsListe implements Iterable&lt;Leistung&gt; {</span>
+<span class="source-line-no">015</span><span id="line-15">    private Element head;</span>
+<span class="source-line-no">016</span><span id="line-16"></span>
+<span class="source-line-no">017</span><span id="line-17">    /**</span>
+<span class="source-line-no">018</span><span id="line-18">     * Legt eine leere Liste an.</span>
+<span class="source-line-no">019</span><span id="line-19">     */</span>
+<span class="source-line-no">020</span><span id="line-20">    public LeistungsListe() {</span>
+<span class="source-line-no">021</span><span id="line-21">        this.head = null;</span>
+<span class="source-line-no">022</span><span id="line-22">    }</span>
+<span class="source-line-no">023</span><span id="line-23"></span>
+<span class="source-line-no">024</span><span id="line-24">    /**</span>
+<span class="source-line-no">025</span><span id="line-25">     * F&amp;uuml;gt eine Zahl am Listenanfang ein.</span>
+<span class="source-line-no">026</span><span id="line-26">     *</span>
+<span class="source-line-no">027</span><span id="line-27">     * @param n die einzuf&amp;uuml;gende Zahl</span>
+<span class="source-line-no">028</span><span id="line-28">     * @return die Liste</span>
+<span class="source-line-no">029</span><span id="line-29">     */</span>
+<span class="source-line-no">030</span><span id="line-30">    public LeistungsListe insert(Leistung n) {</span>
+<span class="source-line-no">031</span><span id="line-31">        this.head = new Element(this.head, n);</span>
+<span class="source-line-no">032</span><span id="line-32">        return this;</span>
+<span class="source-line-no">033</span><span id="line-33">    }</span>
+<span class="source-line-no">034</span><span id="line-34"></span>
+<span class="source-line-no">035</span><span id="line-35">    /**</span>
+<span class="source-line-no">036</span><span id="line-36">     * Provides an iterator over the list of Leistung</span>
+<span class="source-line-no">037</span><span id="line-37">     * objects in this LeistungsListe.</span>
+<span class="source-line-no">038</span><span id="line-38">     *</span>
+<span class="source-line-no">039</span><span id="line-39">     * The iterator traverses the list from its head to the end,</span>
+<span class="source-line-no">040</span><span id="line-40">     * visiting each element in sequence.</span>
+<span class="source-line-no">041</span><span id="line-41">     * Each call to the {@code next()} method returns the current</span>
+<span class="source-line-no">042</span><span id="line-42">     * Leistung object in the traversal.</span>
+<span class="source-line-no">043</span><span id="line-43">     * The method {@code hasNext()} determines whether there are</span>
+<span class="source-line-no">044</span><span id="line-44">     * more elements to iterate.</span>
+<span class="source-line-no">045</span><span id="line-45">     *</span>
+<span class="source-line-no">046</span><span id="line-46">     * @return an iterator to traverse through Leistung elements</span>
+<span class="source-line-no">047</span><span id="line-47">     * in the LeistungsListe.</span>
+<span class="source-line-no">048</span><span id="line-48">     * @throws NoSuchElementException if {@code next()} is called</span>
+<span class="source-line-no">049</span><span id="line-49">     * when the iteration has no more elements.</span>
+<span class="source-line-no">050</span><span id="line-50">     */</span>
+<span class="source-line-no">051</span><span id="line-51">    @Override</span>
+<span class="source-line-no">052</span><span id="line-52">    public Iterator&lt;Leistung&gt; iterator() {</span>
+<span class="source-line-no">053</span><span id="line-53">        // Beispiel fuer eine anonyme lokale Klasse</span>
+<span class="source-line-no">054</span><span id="line-54">        return new Iterator&lt;Leistung&gt;() {</span>
+<span class="source-line-no">055</span><span id="line-55">            private Element current = LeistungsListe.this.head;</span>
+<span class="source-line-no">056</span><span id="line-56"></span>
+<span class="source-line-no">057</span><span id="line-57">            @Override</span>
+<span class="source-line-no">058</span><span id="line-58">            public boolean hasNext() {</span>
+<span class="source-line-no">059</span><span id="line-59">                return this.current != null;</span>
+<span class="source-line-no">060</span><span id="line-60">            }</span>
+<span class="source-line-no">061</span><span id="line-61"></span>
+<span class="source-line-no">062</span><span id="line-62">            @Override</span>
+<span class="source-line-no">063</span><span id="line-63">            public Leistung next() {</span>
+<span class="source-line-no">064</span><span id="line-64">                if (this.current == null) {</span>
+<span class="source-line-no">065</span><span id="line-65">                    throw new NoSuchElementException();</span>
+<span class="source-line-no">066</span><span id="line-66">                }</span>
+<span class="source-line-no">067</span><span id="line-67"></span>
+<span class="source-line-no">068</span><span id="line-68">                Element e = this.current;</span>
+<span class="source-line-no">069</span><span id="line-69">                this.current = this.current.next;</span>
+<span class="source-line-no">070</span><span id="line-70">                return e.n;</span>
+<span class="source-line-no">071</span><span id="line-71">            }</span>
+<span class="source-line-no">072</span><span id="line-72">        };</span>
+<span class="source-line-no">073</span><span id="line-73">    }</span>
+<span class="source-line-no">074</span><span id="line-74"></span>
+<span class="source-line-no">075</span><span id="line-75">    /**</span>
+<span class="source-line-no">076</span><span id="line-76">     * Element speichert eine einzelne Zahl als Teil einer Liste.</span>
+<span class="source-line-no">077</span><span id="line-77">     * Beipiel f&amp;uuml;r eine statisch eingebettete Klasse.</span>
+<span class="source-line-no">078</span><span id="line-78">     */</span>
+<span class="source-line-no">079</span><span id="line-79">    private static final class Element {</span>
+<span class="source-line-no">080</span><span id="line-80">        private final Element next;</span>
+<span class="source-line-no">081</span><span id="line-81">        private final Leistung n;</span>
+<span class="source-line-no">082</span><span id="line-82"></span>
+<span class="source-line-no">083</span><span id="line-83">        private Element(Element e, Leistung n) {</span>
+<span class="source-line-no">084</span><span id="line-84">            this.next = e;</span>
+<span class="source-line-no">085</span><span id="line-85">            this.n = n;</span>
+<span class="source-line-no">086</span><span id="line-86">        }</span>
+<span class="source-line-no">087</span><span id="line-87">    }</span>
+<span class="source-line-no">088</span><span id="line-88">}</span>
+<span class="source-line-no">089</span><span id="line-89"></span>
 
 
 
