@@ -29,6 +29,7 @@ abstract class HtmlFormat {
      */
     public static void ausgeben(PrintWriter writer, String[] name,
                                 LeistungsListe leistung) {
+        //iwas
         writer.println("<!DOCTYPE html>");
         writer.println("<html lang=\"de\">");
         writer.println("<head>");
