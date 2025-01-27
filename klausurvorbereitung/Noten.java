@@ -1,8 +1,8 @@
 package klausurvorbereitung;
 
 public final class Noten {
-    public static final double BESTE = (double)1.0F;
-    public static final double SCHLECHTESTE = (double)5.0F;
+    public static final double BESTE = (double) 1.0F;
+    public static final double SCHLECHTESTE = (double) 5.0F;
 
     public Noten() {
     }
@@ -42,7 +42,7 @@ public final class Noten {
     }
 
     public static String toString(double note) {
-        if ((double)1.0F <= note && note <= (double)5.0F) {
+        if ((double) 1.0F <= note && note <= (double) 5.0F) {
             String noteString = Double.toString(note);
             return noteString;
         } else {
@@ -51,7 +51,7 @@ public final class Noten {
     }
 
     public static boolean istBestanden(double note) {
-        return note <= (double)4.0F;
+        return note <= (double) 4.0F;
     }
 
     public static double bessere(double noteEins, double noteZwei) {
